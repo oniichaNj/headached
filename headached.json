@@ -4,5 +4,6 @@
     "MaxCorruptSleepSeconds": 7200,
     "MinCPUSpikeSeconds": 120,
     "MaxCPUSpikeSeconds": 180,
-    "CPUSpikeDuration": 30
+    "CPUSpikeDuration": 30,
+    "EntropyExhaustion": false
 }

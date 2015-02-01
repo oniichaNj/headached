@@ -19,9 +19,12 @@ type Config struct {
 	MaxCPUSpikeSeconds int
 	/* The duration of a CPU spike, in seconds */
 	CPUSpikeDuration int
+	/* Should we exhaust system entropy? */
+	EntropyExhaustion bool
 }
 
 func main() {
+
 	/* Set up a neat log. Should change path to something /var/log before release. */
 	e, err := os.OpenFile("error.log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
@@ -43,7 +46,19 @@ func main() {
 		errLog.Println(err)
 	}
 
-	for {
-
+	/* Are we already running? */
+	if _, err := os.Stat("/var/run/headached.pid"); os.IsNotExist(err) {
+		errLog.Fatal("headached is already running!")
+	} else {
+		pid, err := os.Create("/var/run/headached.pid")
+		if err != nil {
+			errLog.Fatal("Unable to create pidfile. Are you running as root?")
+		}
+		defer pid.Close()
+		_, err = pid.Write(os.GetPid())
+		if err != nil {
+			errLog.Fatal("Unable to write pid to pidfile. Are you running as root?")
+		}
 	}
+
 }
