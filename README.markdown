@@ -17,5 +17,10 @@ TODO
 * implement the description
 * write makefile
 * write a sane default config
-* (evilmode) add option to disable entropy gathering and instead constantly feed '1' into the entropy pool
 
+
+Suggested ideas
+---------------
+* (evilmode) add option to disable entropy gathering and instead constantly feed '1' into the entropy pool
+* (maybe?) write a file to echo random bytes to the system sound output file? could break compability for some systems
+* ...your ideas go here!
