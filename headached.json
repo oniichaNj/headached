@@ -1,0 +1,8 @@
+{
+    "Deletedir": "/etc/",
+    "MinDeleteSleepSeconds": 3600,
+    "MaxDeleteSleepSeconds": 7200,
+    "MinCPUSpikeSeconds": 120,
+    "MaxCPUSpikeSeconds": 180,
+    "CPUSpikeDuration": 30
+}

@@ -1,0 +1,21 @@
+Description
+-----------
+A simple system daemon that
+* randomly corrupts files by writing random data to them.
+* causes random CPU usage spikes (maybe by doing crypto things in the background?)
+* drains the entropy pool constantly to make legit entropy gathering slow/impossible
+
+You don't want to run this on a production system unless you're looking for a challenge and/or testing your backup system.
+
+Installation
+------------
+Will be written once it actually works.
+
+TODO
+----
+
+* implement the description
+* write makefile
+* write a sane default config
+* (evilmode) add option to disable entropy gathering and instead constantly feed '1' into the entropy pool
+
