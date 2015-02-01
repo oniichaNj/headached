@@ -1,5 +1,5 @@
 {
-    "Deletedir": "/etc/",
+    "CorruptDir": "/etc/",
     "MinCorruptSleepSeconds": 3600,
     "MaxCorruptSleepSeconds": 7200,
     "MinCPUSpikeSeconds": 120,

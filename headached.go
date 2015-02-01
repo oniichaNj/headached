@@ -9,7 +9,7 @@ import (
 
 type Config struct {
 	/* The directory to remove files from: */
-	Deletedir string
+	CorruptDir string
 	/* The interval of seconds to wait between file corruption: */
 	MinCorruptSleepSeconds int
 	MaxCorruptSleepSeconds int
