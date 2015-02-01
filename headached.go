@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/oniichaNj/headached/lib"
+	"github.com/oniichaNj/headached/lib/corrupt"
+	"github.com/oniichaNj/headached/lib/entropyexhaustion"
+	"github.com/oniichaNj/headached/lib/load"
 	"log"
 	"os"
 )
@@ -12,8 +14,8 @@ type Config struct {
 	/* The directory to remove files from: */
 	CorruptDir string
 	/* The interval of seconds to wait between file corruption: */
-	MinCorruptSleepSeconds int
-	MaxCorruptSleepSeconds int
+	MinCorruptSeconds int
+	MaxCorruptSeconds int
 	/* The interval of seconds to wait between CPU usage */
 	MinCPUSpikeSeconds int
 	MaxCPUSpikeSeconds int
@@ -32,13 +34,14 @@ func main() {
 		os.Exit(1)
 	}
 	defer e.Close()
-	errLog := log.New(e, ">>>", log.Ldate|log.Ltime)
+	errLog := log.New(e, "", log.Ldate|log.Ltime)
 
 	/* Open and set up the configuration file. Should change path to /etc/headached.json before release. */
 	cfgf, err := os.Open("headached.json")
 	if err != nil {
 		errLog.Println(err)
 	}
+	defer cfgf.Close()
 	decoder := json.NewDecoder(cfgf)
 	config := Config{}
 	err = decoder.Decode(&config)
@@ -46,19 +49,15 @@ func main() {
 		errLog.Println(err)
 	}
 
-	/* Are we already running? */
-	if _, err := os.Stat("/var/run/headached.pid"); os.IsNotExist(err) {
-		errLog.Fatal("headached is already running!")
-	} else {
-		pid, err := os.Create("/var/run/headached.pid")
-		if err != nil {
-			errLog.Fatal("Unable to create pidfile. Are you running as root?")
-		}
-		defer pid.Close()
-		_, err = pid.Write(os.GetPid())
-		if err != nil {
-			errLog.Fatal("Unable to write pid to pidfile. Are you running as root?")
-		}
+	/*
+	 * Load the components from lib/ that we want to use.
+	 * If you wrote your own components, add them here.
+	 */
+
+	go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds)
+	go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration)
+	if config.EntropyExhaustion {
+		go entropyexhaustion.Init()
 	}
 
 }

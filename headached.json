@@ -1,7 +1,7 @@
 {
     "CorruptDir": "/etc/",
-    "MinCorruptSleepSeconds": 3600,
-    "MaxCorruptSleepSeconds": 7200,
+    "MinCorruptSeconds": 3600,
+    "MaxCorruptSeconds": 7200,
     "MinCPUSpikeSeconds": 120,
     "MaxCPUSpikeSeconds": 180,
     "CPUSpikeDuration": 30,
