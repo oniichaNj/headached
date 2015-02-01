@@ -10,9 +10,9 @@ import (
 type Config struct {
 	/* The directory to remove files from: */
 	Deletedir string
-	/* The interval of seconds to wait between file deletion: */
-	MinDeleteSleepSeconds int
-	MaxDeleteSleepSeconds int
+	/* The interval of seconds to wait between file corruption: */
+	MinCorruptSleepSeconds int
+	MaxCorruptSleepSeconds int
 	/* The interval of seconds to wait between CPU usage */
 	MinCPUSpikeSeconds int
 	MaxCPUSpikeSeconds int
