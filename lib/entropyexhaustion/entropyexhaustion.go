@@ -1,6 +1,6 @@
 package entropyexhaustion
 
-import "ioutil"
+import "io/ioutil"
 
 func Init(errLog *Logger) {
 	errLog.Println("Starting entropy exhaustion. ")
