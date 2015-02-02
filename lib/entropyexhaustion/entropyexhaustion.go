@@ -2,6 +2,14 @@ package entropyexhaustion
 
 import "io/ioutil"
 
+/*
+ * NOTE: running this on a machine with haveged
+ * is useless, as it adds a static amount of
+ * good (non-static) entropy.
+ *
+ * Most machines don't have that installed though.
+ */
+
 func Init(errLog *Logger) {
 	errLog.Println("Starting entropy exhaustion. ")
 	for {
