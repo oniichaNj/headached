@@ -12,9 +12,9 @@ func Init(minsec int, maxsec int, duration int, errLog *Logger) {
 	for {
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 		//We sleep for a range between min and max.
-		val := time.Duration(r.Intn(maxsec-minsec)+minsec) * time.Second
-		exhaustForNseconds(val)
-		errLog.Printf("CPU stress cycle for %d seconds finished.\n", val)
+		time.Sleep(time.Duration(r.Intn(maxsec-minsec)+minsec) * time.Second)
+		exhaustForNseconds(time.Duration(duration) * time.Second)
+		errLog.Printf("CPU stress cycle for %d seconds finished.\n", duration)
 
 	}
 }

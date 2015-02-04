@@ -55,7 +55,7 @@ func main() {
 	 */
 
 	go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds)
-	go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration)
+	go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration, errLog)
 	if config.EntropyExhaustion {
 		go entropyexhaustion.Init(errLog)
 	}
