@@ -24,4 +24,6 @@ Suggested ideas
 ---------------
 * (evilmode) add option to disable entropy gathering and instead constantly feed '1' into the entropy pool
 * (maybe?) write a file to echo random bytes to the system sound output device? could break compability for some systems
+* randomly allocate a bunch of memory
+* (maybe) create a bunch of files here and there?
 * ...your ideas go here!
