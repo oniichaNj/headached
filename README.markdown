@@ -1,7 +1,7 @@
 Description
 -----------
 A simple system daemon that
-- [ ] randomly corrupts files by writing random data to them.
+- [X] randomly corrupts files by writing random data to them.
 - [X] causes random CPU usage spikes (maybe by doing crypto things in the background?)
 - [X] drains the entropy pool constantly to make legit entropy gathering slow/impossible
 
@@ -14,10 +14,10 @@ Will be written once it actually works.
 TODO
 ----
 
-- [ ] implement the description
+- [X] implement the description
 - [ ] write makefile
 - [ ] Make `go get`-able
-- [ ] write a sane default config
+- [X] write a sane default config
 
 
 Suggested ideas
