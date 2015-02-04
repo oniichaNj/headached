@@ -21,6 +21,9 @@ Grab the code by running `go get github.com/oniichaNj/headached`.
 Enter your `$GOPATH/src/github.com/oniichaNj/headached/` and run `go build headached.go`.
 The resulting binary is available in that same directory as just `headached` and can be moved to a `$PATH`.
 
+Until it's fully daemonised via the most common daemon managers, running it as `headached &` willl have to do.
+
+Bare in mind that `headached` needs to be ran as root in order to use the file corruption features.
 
 
 TODO
