@@ -2,13 +2,14 @@ package load
 
 import (
 	"crypto/md5"
+	"log"
 	"math/rand"
 	"runtime"
 	"sync"
 	"time"
 )
 
-func Init(minsec int, maxsec int, duration int, errLog *Logger) {
+func Init(minsec int, maxsec int, duration int, errLog *log.Logger) {
 	for {
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 		//We sleep for a range between min and max.

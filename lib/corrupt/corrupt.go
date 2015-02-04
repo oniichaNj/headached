@@ -4,12 +4,13 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math/rand"
 	"os"
 	"time"
 )
 
-func Init(minsec int, maxsec int, corruptdirs []string, corruptnbytes int, errLog *Logger) {
+func Init(minsec int, maxsec int, corruptdirs []string, corruptnbytes int, errLog *log.Logger) {
 	for {
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 

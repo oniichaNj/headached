@@ -1,6 +1,9 @@
 package entropyexhaustion
 
-import "io/ioutil"
+import (
+	"io/ioutil"
+	"log"
+)
 
 /*
  * NOTE: running this on a machine with haveged
@@ -10,7 +13,7 @@ import "io/ioutil"
  * Most machines don't have that installed though.
  */
 
-func Init(errLog *Logger) {
+func Init(errLog *log.Logger) {
 	errLog.Println("Starting entropy exhaustion. ")
 	for {
 		/* ReadFile reads until EOF. If that were to happen, we just do it again. */
@@ -18,7 +21,7 @@ func Init(errLog *Logger) {
 		_, err := ioutil.ReadFile("/dev/random")
 		/* EOF isn't an error. */
 		if err != nil {
-			log.Println("entropyexhaustion failed: ", err)
+			errLog.Println("entropyexhaustion failed: ", err)
 		}
 
 	}

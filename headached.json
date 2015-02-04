@@ -1,5 +1,6 @@
 {
-    "CorruptDirs": ["/tmp/test1", "/tmp/test2"],
+    "EnableCorruption": true,
+    "CorruptDirs": ["/tmp/test1/", "/tmp/test2/"],
     "MinCorruptSeconds": 3600,
     "MaxCorruptSeconds": 7200,
     "CorruptNbytes": 10,

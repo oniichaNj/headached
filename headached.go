@@ -8,9 +8,12 @@ import (
 	"github.com/oniichaNj/headached/lib/load"
 	"log"
 	"os"
+	"time"
 )
 
 type Config struct {
+	/* Should we corrupt files? */
+	EnableCorruption bool
 	/* The directory to remove files from: */
 	CorruptDirs []string
 	/* The interval of seconds to wait between file corruption: */
@@ -56,10 +59,16 @@ func main() {
 	 * If you wrote your own components, add them here.
 	 */
 
-	go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds, config.CorruptDirs, config.CorruptNbytes, errLog)
+	if config.EnableCorruption {
+		go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds, config.CorruptDirs, config.CorruptNbytes, errLog)
+	}
 	go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration, errLog)
 	if config.EnableEntropyExhaustion {
 		go entropyexhaustion.Init(errLog)
 	}
 
+	for {
+		time.Sleep(5 * time.Second)
+
+	}
 }
