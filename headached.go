@@ -12,17 +12,19 @@ import (
 
 type Config struct {
 	/* The directory to remove files from: */
-	CorruptDir string
+	CorruptDirs []string
 	/* The interval of seconds to wait between file corruption: */
 	MinCorruptSeconds int
 	MaxCorruptSeconds int
+	/* The amount of bytes to corrupt. */
+	CorruptNbytes int
 	/* The interval of seconds to wait between CPU usage */
 	MinCPUSpikeSeconds int
 	MaxCPUSpikeSeconds int
 	/* The duration of a CPU spike, in seconds */
 	CPUSpikeDuration int
 	/* Should we exhaust system entropy? */
-	EntropyExhaustion bool
+	EnableEntropyExhaustion bool
 }
 
 func main() {
@@ -54,9 +56,9 @@ func main() {
 	 * If you wrote your own components, add them here.
 	 */
 
-	go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds)
+	go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds, config.CorruptDirs, config.CorruptNbytes, errLog)
 	go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration, errLog)
-	if config.EntropyExhaustion {
+	if config.EnableEntropyExhaustion {
 		go entropyexhaustion.Init(errLog)
 	}
 
