@@ -1,9 +1,9 @@
 Description
 -----------
 A simple system daemon that
-* randomly corrupts files by writing random data to them.
-* causes random CPU usage spikes (maybe by doing crypto things in the background?)
-* drains the entropy pool constantly to make legit entropy gathering slow/impossible
+- [ ] randomly corrupts files by writing random data to them.
+- [X] causes random CPU usage spikes (maybe by doing crypto things in the background?)
+- [X] drains the entropy pool constantly to make legit entropy gathering slow/impossible
 
 You don't want to run this on a production system unless you're looking for a challenge and/or testing your backup system.
 
