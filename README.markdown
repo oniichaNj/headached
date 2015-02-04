@@ -14,9 +14,9 @@ Will be written once it actually works.
 TODO
 ----
 
-* implement the description
-* write makefile
-* write a sane default config
+- [ ] implement the description
+- [ ] write makefile
+- [ ] write a sane default config
 
 
 Suggested ideas
