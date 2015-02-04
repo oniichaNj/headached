@@ -16,6 +16,7 @@ TODO
 
 - [ ] implement the description
 - [ ] write makefile
+- [ ] Make `go get`-able
 - [ ] write a sane default config
 
 
