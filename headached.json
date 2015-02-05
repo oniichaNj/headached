@@ -1,11 +1,11 @@
 {
-    "EnableCorruption": true,
+    "EnableCorruption": false,
     "CorruptDirs": ["/tmp/test1/", "/tmp/test2/"],
     "MinCorruptSeconds": 3600,
     "MaxCorruptSeconds": 7200,
     "CorruptNbytes": 10,
-    "MinCPUSpikeSeconds": 120,
-    "MaxCPUSpikeSeconds": 180,
-    "CPUSpikeDuration": 30,
+    "MinCPUSpikeSeconds": 5,
+    "MaxCPUSpikeSeconds": 10,
+    "CPUSpikeDuration": 10,
     "EnableEntropyExhaustion": false
 }
