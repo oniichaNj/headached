@@ -8,7 +8,8 @@ import (
 	"github.com/oniichaNj/headached/lib/load"
 	"log"
 	"os"
-	"time"
+	"sync"
+	//	"time"
 )
 
 type Config struct {
@@ -58,17 +59,19 @@ func main() {
 	 * Load the components from lib/ that we want to use.
 	 * If you wrote your own components, add them here.
 	 */
-
+	var wg sync.WaitGroup
 	if config.EnableCorruption {
+		wg.Add(1)
 		go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds, config.CorruptDirs, config.CorruptNbytes, errLog)
+
 	}
+	wg.Add(1)
 	go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration, errLog)
+
 	if config.EnableEntropyExhaustion {
+		wg.Add(1)
 		go entropyexhaustion.Init(errLog)
 	}
+	wg.Wait()
 
-	for {
-		time.Sleep(5 * time.Second)
-
-	}
 }
