@@ -19,8 +19,11 @@ Compiling
 ---------
 If you don't haev a GOPATH set up, do so by executing `mkdir ~/go` (replacing `~/go` with where you want your GOPATH), followed by `export GOPATH=$HOME/go` (assuming you used that directory).
 
+You might want to add the line `export GOPATH=$HOME/go` to your shell rc file, so you don't have to run it every time you restart the shell.
+
 Grab the code by running `go get github.com/oniichaNj/headached`.
 Enter your `$GOPATH/src/github.com/oniichaNj/headached/` and run `make`.
+
 `sudo make install` can be ran afterwards, to install the compiled file to the system. 
 
 Until it's fully daemonised via the most common daemon managers, running it as `headached &> /var/log/headached.log &` willl have to do.
