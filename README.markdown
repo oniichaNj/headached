@@ -27,19 +27,25 @@ Enter your `$GOPATH/src/github.com/oniichaNj/headached/` and run `make`.
 `sudo make install` can be ran afterwards, to install the compiled file to the system. 
 
 
-Bare in mind that `headached` needs to be run as root in order to use the file corruption features.
-
-systemd install
----------------
-Run `sudo make systemd-install` to install the unit file to the system.
+Bare in mind that `headached` needs to be run as root in order to use the file corruption features (well, not really, but you probably want to use it on paths that require it anyways).
 
 Gentoo install
 --------------
 Run `sudo make gentoo-install` to install the init file to the system.
 
+Debian install
+--------------
+Run `sudo make debian-install` to install the init file to the system.
+
+systemd install
+---------------
+Run `sudo make systemd-install` to install the unit file to the system.
+
 Other systems
 -------------
-For now, running it as `/usr/sbin/headached &> /var/log/headached.log &` willl have to do.
+Running it as `/usr/sbin/headached &> /var/log/headached.log &` works fine.
+If your system isn't supported, just pull request what you need and I'll look at it.
+
 
 
 TODO
