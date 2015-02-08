@@ -11,7 +11,7 @@ systemd-install: install
 	@echo "Unit file installed. Run `systemctl enable headached.service` to enable it. "
 
 gentoo-install: install
-	@cp -f init/gentoo-headached /etc/init.d/headached
+	@cp -f init/gentoo-headached.sh /etc/init.d/headached
 	@chmod +x /etc/init.d/headached
 	@echo "Init script installed. Run `rc-update add headached <runlevel>` to enable it. "
 
