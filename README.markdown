@@ -1,9 +1,9 @@
 Description
 ===========
 A simple system daemon that
-- [X] randomly corrupts files by writing random data to them.
-- [X] causes random CPU usage spikes (by doing crypto things in the background, as this proved to use more user time than just blank for{}'s)
-- [X] drains the entropy pool constantly to make legit entropy gathering slow/impossible
+* randomly corrupts files by writing random data to them.
+* causes random CPU usage spikes (by doing crypto things in the background, as this proved to use more user time than just blank for{}'s)
+* drains the entropy pool constantly to make legit entropy gathering slow/impossible
 
 You don't want to run this on a production system unless you're looking for a challenge and/or testing your backup system.
 
@@ -26,17 +26,27 @@ Enter your `$GOPATH/src/github.com/oniichaNj/headached/` and run `make`.
 
 `sudo make install` can be ran afterwards, to install the compiled file to the system. 
 
-Until it's fully daemonised via the most common daemon managers, running it as `headached &> /var/log/headached.log &` willl have to do.
 
-Bare in mind that `headached` needs to be ran as root in order to use the file corruption features.
+Bare in mind that `headached` needs to be run as root in order to use the file corruption features.
+
+systemd install
+---------------
+Run `sudo make systemd-install` to install the unit file to the system.
+
+Gentoo install
+--------------
+Run `sudo make gentoo-install` to install the init file to the system.
+
+Other systems
+-------------
+For now, running it as `/usr/sbin/headached &> /var/log/headached.log &` willl have to do.
 
 
 TODO
 ====
 
 - [X] implement the description
-- [ ] write makefile
-- [ ] Make `go get`-able
+- [X] write makefile
 - [X] write a sane default config
 
 
