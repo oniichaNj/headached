@@ -2,14 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/oniichaNj/headached/lib/corrupt"
 	"github.com/oniichaNj/headached/lib/entropyexhaustion"
 	"github.com/oniichaNj/headached/lib/load"
 	"log"
 	"os"
 	"sync"
-	//	"time"
 )
 
 type Config struct {
@@ -22,6 +20,8 @@ type Config struct {
 	MaxCorruptSeconds int
 	/* The amount of bytes to corrupt. */
 	CorruptNbytes int
+	/* Should we increase load average? */
+	EnableCPUSpike bool
 	/* The interval of seconds to wait between CPU usage */
 	MinCPUSpikeSeconds int
 	MaxCPUSpikeSeconds int
@@ -33,45 +33,49 @@ type Config struct {
 
 func main() {
 
-	/* Set up a neat log. Should change path to something /var/log before release. */
-	e, err := os.OpenFile("error.log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
-	if err != nil {
-		fmt.Printf("error opening file: %v", err)
-		os.Exit(1)
-	}
-	defer e.Close()
-	errLog := log.New(e, "", log.Ldate|log.Ltime)
+	/*
+	 * Logging to STDERR is neater because we can then let something else deal with rotation
+	 * and choose what file to put things in.
+	 */
+
+	errLog := log.New(os.Stderr, "", log.Ldate|log.Ltime)
 
 	/* Open and set up the configuration file. Should change path to /etc/headached.json before release. */
 	cfgf, err := os.Open("headached.json")
 	if err != nil {
-		errLog.Println(err)
+		errLog.Fatal(err)
 	}
 	defer cfgf.Close()
+
 	decoder := json.NewDecoder(cfgf)
 	config := Config{}
 	err = decoder.Decode(&config)
 	if err != nil {
-		errLog.Println(err)
+		errLog.Fatal(err)
 	}
+
+	var wg sync.WaitGroup
 
 	/*
 	 * Load the components from lib/ that we want to use.
 	 * If you wrote your own components, add them here.
 	 */
-	var wg sync.WaitGroup
+
 	if config.EnableCorruption {
 		wg.Add(1)
 		go corrupt.Init(config.MinCorruptSeconds, config.MaxCorruptSeconds, config.CorruptDirs, config.CorruptNbytes, errLog)
-
 	}
-	wg.Add(1)
-	go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration, errLog)
+
+	if config.EnableCPUSpike {
+		wg.Add(1)
+		go load.Init(config.MinCPUSpikeSeconds, config.MaxCPUSpikeSeconds, config.CPUSpikeDuration, errLog)
+	}
 
 	if config.EnableEntropyExhaustion {
 		wg.Add(1)
 		go entropyexhaustion.Init(errLog)
 	}
+
 	wg.Wait()
 
 }

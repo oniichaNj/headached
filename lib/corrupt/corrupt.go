@@ -11,6 +11,7 @@ import (
 )
 
 func Init(minsec int, maxsec int, corruptdirs []string, corruptnbytes int, errLog *log.Logger) {
+	errLog.Println("Starting file corruption.")
 	for {
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
@@ -25,9 +26,9 @@ func Init(minsec int, maxsec int, corruptdirs []string, corruptnbytes int, errLo
 		f := a[r.Intn(len(a))]
 		err = corrupt(ourDir, f, corruptnbytes)
 		if err != nil {
-			errLog.Printf("Failed to corrupt file %s in directory %s: %s\n", f.Name(), ourDir, err)
+			errLog.Printf("Failed to corrupt file %s%s: %s\n", ourDir, f.Name(), err)
 		} else {
-			errLog.Printf("Successfully corrupted file %s in directory %s\n", f.Name(), ourDir)
+			errLog.Printf("Successfully corrupted file %s%s\n", ourDir, f.Name())
 		}
 	}
 

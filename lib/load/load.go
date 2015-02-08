@@ -10,7 +10,7 @@ import (
 )
 
 func Init(minsec int, maxsec int, duration int, errLog *log.Logger) {
-	errLog.Println("load starting")
+	errLog.Println("Starting load")
 	for {
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 		//We sleep for a range between min and max.
