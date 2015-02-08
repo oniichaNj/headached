@@ -1,0 +1,9 @@
+[Unit]
+Description=Headache Daemon
+After=syslog.target
+
+[Service]
+ExecStart=/usr/sbin/headached
+
+[Install]
+WantedBy=multi-user.target
