@@ -17,7 +17,7 @@ Dependencies
 
 Compiling 
 ---------
-If you don't haev a GOPATH set up, do so by executing `mkdir ~/go` (replacing `~/go` with where you want your GOPATH), followed by `export GOPATH=$HOME/go` (assuming you used that directory).
+If you don't have a GOPATH set up, do so by executing `mkdir ~/go` (replacing `~/go` with where you want your GOPATH), followed by `export GOPATH=$HOME/go` (assuming you used that directory).
 
 You might want to add the line `export GOPATH=$HOME/go` to your shell rc file, so you don't have to run it every time you restart the shell.
 
