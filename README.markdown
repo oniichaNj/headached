@@ -9,19 +9,21 @@ You don't want to run this on a production system unless you're looking for a ch
 
 Installation
 ============
-(This section will be changed once a Makefile is written.)
+(This section is subject to change.)
 Dependencies
 ------------
 * `go` (the Google Go compiler)
 * a GNU/Linux or (untested) *BSD operating system
 
-Compiling
+Compiling 
 ---------
-Grab the code by running `go get github.com/oniichaNj/headached`.
-Enter your `$GOPATH/src/github.com/oniichaNj/headached/` and run `go build headached.go`.
-The resulting binary is available in that same directory as just `headached` and can be moved to a `$PATH`.
+If you don't haev a GOPATH set up, do so by executing `mkdir ~/go` (replacing `~/go` with where you want your GOPATH), followed by `export GOPATH=$HOME/go` (assuming you used that directory).
 
-Until it's fully daemonised via the most common daemon managers, running it as `headached &` willl have to do.
+Grab the code by running `go get github.com/oniichaNj/headached`.
+Enter your `$GOPATH/src/github.com/oniichaNj/headached/` and run `make`.
+`sudo make install` can be ran afterwards, to install the compiled file to the system. 
+
+Until it's fully daemonised via the most common daemon managers, running it as `headached &> /var/log/headached.log &` willl have to do.
 
 Bare in mind that `headached` needs to be ran as root in order to use the file corruption features.
 
