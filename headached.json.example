@@ -1,0 +1,33 @@
+/*
+ * This is the example configuration file for headached.
+ * Before using this, remove ALL comments including this one, as JSON doesn't support comments.
+ * Then, move this file to /etc/headached.json and configure as needed. 
+ * A default file without destructive behavior has been installed to /etc/headached.json already,
+ * this file is just for reference. 
+ */
+
+{
+    /* Should we enable the corruption of files? */ 
+    "EnableCorruption": true,
+    /* A list/array of directories in which we are allowed to corrupt files. Not recursive. */
+    /* Requires a trailing "/". The file installed is not destructive, edit to a directory you find important  */
+    /* to enable destructive behavior. */
+    "CorruptDirs": ["/tmp/", "/home/richard/"],
+    /* The interval of seconds in which a random value to wait between file corruptions is chosen. */
+    "MinCorruptSeconds": 3600,
+    "MaxCorruptSeconds": 7200,
+    /* How many bytes should we corrupt in a file? (Lower = less severe. */
+    /* For a more severe corruption, you can either increase this to trash files completely, */
+    /* or lower the time between each corruption for a more evenly distributed "all files will be somewhat corrupted". */
+    "CorruptNbytes": 10,
+    /* Should we increase CPU load average at times? */
+    "EnableCPUSpike": true,
+    /* The interval of seconds in which a random value to wait between load average increase is chosen. */
+    "MinCPUSpikeSeconds": 60,
+    "MaxCPUSpikeSeconds": 720,
+    /* The duration of a CPU load average "spike". */
+    "CPUSpikeDuration": 30,
+    /* Should we exhaust system entropy? */
+    "EnableEntropyExhaustion": true
+    /* Notice that the last line of the JSON document shouldn't end with a comma (","). */
+}

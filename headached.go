@@ -40,8 +40,8 @@ func main() {
 
 	errLog := log.New(os.Stderr, "", log.Ldate|log.Ltime)
 
-	/* Open and set up the configuration file. Should change path to /etc/headached.json before release. */
-	cfgf, err := os.Open("headached.json")
+	/* Open and set up the configuration file. */
+	cfgf, err := os.Open("/etc/headached.json")
 	if err != nil {
 		errLog.Fatal(err)
 	}
