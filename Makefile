@@ -12,4 +12,10 @@ systemd-install: install
 
 gentoo-install: install
 	@cp -f init/gentoo-headached /etc/init.d/headached
+	@chmod +x /etc/init.d/headached
 	@echo "Init script installed. Run `rc-update add headached <runlevel>` to enable it. "
+
+debian-install: install
+	@cp -f init/debian-headached.sh /etc/init.d/headached
+	@chmod +x /etc/init.d/headached
+	@echo "Init script installed. Run `update-rc.d headached defaults` to enable it. "
