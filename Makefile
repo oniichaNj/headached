@@ -1,7 +1,15 @@
 all:
-	go build .
+	@go build .
 
 install: 
-	cp -f headached /usr/sbin/headached
-	cp -f headached.json /etc/headached.json
-	cp -f headached.json.example /etc/headached.json.example
+	@cp -f headached /usr/sbin/headached
+	@cp -f headached.json /etc/headached.json
+	@cp -f headached.json.example /etc/headached.json.example
+
+systemd-install: install
+	@cp -f init/headached.service /usr/lib/systemd/system/headached.service
+	@echo "Unit file installed. Run `systemctl enable headached.service` to enable it. "
+
+gentoo-install: install
+	@cp -f init/gentoo-headached /etc/init.d/headached
+	@echo "Init script installed. Run `rc-update add headached <runlevel>` to enable it. "
